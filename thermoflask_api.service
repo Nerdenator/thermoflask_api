@@ -1,10 +1,13 @@
 [Unit]
 Description=Thermoflask Web API
-After=multi-user.target
+After=network.target
 Conflicts=getty@tty1.service
 
 [Service]
-Type=simple
+User=user
+Group=Gunicorn
+WorkingDirectory=~/thermoflask
+Environment="PATH=~/thermoflask/thermoflaskenv/bin"
 ExecStart=/usr/bin/python3 ~/thermoflask_api/app.py
 StandardInput=tty-force
 
