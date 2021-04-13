@@ -36,7 +36,7 @@ def get_cpu_clock():
     :return: speed in Hz
     """
     cpu_clock = subprocess.run(['vcgencmd', 'measure_clock', 'arm'], stdout=subprocess.PIPE, text=True)
-    return cpu_clock.stdout[-10:]
+    return cpu_clock.stdout[-11:].rstrip()
 
 @app.route('/api/v1/information/combined/immediate', methods=['GET'])
 def api_immediate():
