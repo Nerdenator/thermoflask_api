@@ -1,5 +1,7 @@
 import json
+import socket
 import subprocess
+
 
 from flask import Flask
 
@@ -10,6 +12,12 @@ app = Flask(__name__)
 def home():
     return "<h1>Raspberry Pi Thermal API</h1><p>This site maps out CPU and thermal information.</p>"
 
+def get_hostname():
+    """
+    glorified wrapper for socket.
+    :return: system hostname
+    """
+    return socket.gethostname()
 
 def get_temp():
     """
@@ -45,6 +53,7 @@ def api_immediate():
     :return: json object with clock speed and temperature
     """
     dict_obj = {
+        'hostname': get_hostname(),
         'temp': get_temp(),
         'clock_speed': get_cpu_clock()
     }
