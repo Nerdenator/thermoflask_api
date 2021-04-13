@@ -19,13 +19,13 @@ def get_temp():
     temp_c = subprocess.run(['vcgencmd', 'measure_temp'], stdout=subprocess.PIPE, text=True)
     len_temp_c = len(temp_c.stdout)
     # trim off "temp=" at the front and "'C" at the end
-    if len_temp_c is 10:    # temp=x.x'C
+    if len_temp_c == 10:    # temp=x.x'C
         print(temp_c.stdout[-5:-2])
         return temp_c.stdout[-5:-2]
-    elif len_temp_c is 11:  # temp=xx.x'C
+    elif len_temp_c == 11:  # temp=xx.x'C
         print(temp_c.stdout[-6:-2])
         return temp_c.stdout[-6:-2]
-    elif len_temp_c is 12:  # temp=xxx.x'C
+    elif len_temp_c == 12:  # temp=xxx.x'C
         print(temp_c.stdout[-7:-2])
         return temp_c.stdout[-7:-2]
 
